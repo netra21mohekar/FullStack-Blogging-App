@@ -1,11 +1,14 @@
+# Use JDK 17
 FROM eclipse-temurin:17-jdk-alpine
-    
+
+# Set app directory
+WORKDIR /app
+
+# Copy the built JAR
+COPY target/*.jar app.jar
+
+# Expose port 8080
 EXPOSE 8080
- 
-ENV APP_HOME /usr/src/app
 
-COPY target/*.jar $APP_HOME/app.jar
-
-WORKDIR $APP_HOME
-
+# Run the application
 CMD ["java", "-jar", "app.jar"]
